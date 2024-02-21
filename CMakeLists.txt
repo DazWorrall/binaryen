@@ -288,13 +288,6 @@ else()
     add_compile_flag("-Wctad-maybe-unsupported")
   endif()
 
-  if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "aarch64")
-    # We don't understand this warning only for this file on aarch64
-    # For context: https://github.com/WebAssembly/binaryen/issues/6311
-
-    set_source_files_properties(src/support/small_vector.h PROPERTIES COMPILE_FLAGS "-Wno-error=maybe-uninitialized")
-  endif()
-
   if(WIN32)
     add_compile_flag("-D_GNU_SOURCE")
     add_compile_flag("-D__STDC_FORMAT_MACROS")
