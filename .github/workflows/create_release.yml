@@ -156,20 +156,8 @@ jobs:
         mv install-${{ matrix.docker_platform }} binaryen-$VERSION
         tar -czf $TARBALL binaryen-$VERSION
         cmake -E sha256sum $TARBALL > $SHASUM
-        echo "::set-output name=tarball::$TARBALL"
-        echo "::set-output name=shasum::$SHASUM"
-
-    - name: Upload tarball
-      uses: actions/upload-artifact@v3
-      with:
-        name: tarball-${{ matrix.docker_platform }}
-        path: ${{ steps.archive.outputs.tarball }}
-
-    - name: Upload shasum
-      uses: actions/upload-artifact@v3
-      with:
-        name: shasum-${{ matrix.docker_platform }}
-        path: ${{ steps.archive.outputs.shasum }}
+        echo "::set-output name=tarball-${{ matrix.docker_platform }}::$TARBALL"
+        echo "::set-output name=shasum-${{ matrix.docker_platform }}::$SHASUM"
 
 #    - name: upload tarball
 #      uses: softprops/action-gh-release@v1
