@@ -4,8 +4,8 @@ name: Create Release
 
 on:
   push:
-#    tags:
-#      - "*"
+    tags:
+      - "*"
 
 permissions:
   contents: write
@@ -91,15 +91,15 @@ jobs:
         echo "::set-output name=shasum::$SHASUM"
       if: matrix.os == 'macos-latest'
 
-#    - name: upload tarball
-#      uses: softprops/action-gh-release@v1
-#      with:
-#        draft: true
-#        files: |
-#          ${{ steps.archive.outputs.tarball }}
-#          ${{ steps.archive.outputs.shasum }}
-#          ${{ steps.archive-arm64.outputs.tarball }}
-#          ${{ steps.archive-arm64.outputs.shasum }}
+    - name: upload tarball
+      uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        files: |
+          ${{ steps.archive.outputs.tarball }}
+          ${{ steps.archive.outputs.shasum }}
+          ${{ steps.archive-arm64.outputs.tarball }}
+          ${{ steps.archive-arm64.outputs.shasum }}
 
   # Build with gcc 6.3 and run tests on Alpine Linux (inside chroot).
   # Note: Alpine uses musl libc.
@@ -159,10 +159,10 @@ jobs:
         echo "::set-output name=tarball-${{ matrix.docker_platform }}::$TARBALL"
         echo "::set-output name=shasum-${{ matrix.docker_platform }}::$SHASUM"
 
-#    - name: upload tarball
-#      uses: softprops/action-gh-release@v1
-#      with:
-#        draft: true
-#        files: |
-#          ${{ steps.archive.outputs.tarball }}
-#          ${{ steps.archive.outputs.shasum }}
+    - name: upload tarball
+      uses: softprops/action-gh-release@v1
+      with:
+        draft: true
+        files: |
+          ${{ steps.archive.outputs.tarball }}
+          ${{ steps.archive.outputs.shasum }}
